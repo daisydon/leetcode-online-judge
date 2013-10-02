@@ -115,10 +115,12 @@ public class Solution {
             p1=p1.next;
             p2=p2.next;
         }
-        p1.next=p1.next.next;
+        
         if(p1==head){
+            p1.next=p1.next.next;
             head.next=p1.next;
         }
+        p1.next=p1.next.next;
         return head;
     }
 }
