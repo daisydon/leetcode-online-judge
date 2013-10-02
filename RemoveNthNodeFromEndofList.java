@@ -97,11 +97,8 @@ public class Solution {
 
 //Method3: use two pointers
 //AC
-    public ListNode removeNthNode(ListNode head, int n){        if(head == null) return null;
-         if(head.next==null&&n>=1) return null;
-         if(head.next.next==null&&n==1) {head.next =null; return head;}
+    public ListNode removeNthNode(ListNode head, int n){        
         
-   
         ListNode p1 = head;      //point to the (n+1)th node from the end of linked list
         
         ListNode p2 = head;     //point to the last node of linked list
