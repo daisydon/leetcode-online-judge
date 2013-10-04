@@ -1,3 +1,4 @@
+//print all the rows
 public class Solution {
     public ArrayList<ArrayList<Integer>> generate(int numRows) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
