@@ -46,6 +46,7 @@ public class Solution {
     }
 
     //Method2: use three pointers
+    //has some cases that do not work
     public ListNode removeNode(ListNode head, int n){
          if(head == null) return null;
          if(head.next == null && n>=1) return null;
@@ -95,30 +96,36 @@ public class Solution {
        }
 
 //Method3: use two pointers
-//problem is: if nth node is the head, it won't work
-    public ListNode removeNthNode(ListNode head, int n){
-        if(head == null) return null;
-        if(head.next==null&&n>1) return null;
-
-        ListNode p1 = new ListNode(head.val);     //point to the (n-1)th node from the end of linked list
-        p1.next = head.next.next;
-
-        ListNode p2 = new ListNode(head.val);       //point to the last node of linked list
-        p2.next = head.next.next;
+//AC
+    public ListNode removeNthNode(ListNode head, int n){        
+        
+        ListNode p1 = head;      //point to the (n+1)th node from the end of linked list
+        
+        ListNode p2 = head;     //point to the last node of linked list
 
         int i =0;
         while(i<n){
           p2=p2.next;
           i++;
         }
+        
+        if ( p2 == null ){             //if head is the nth node from the end
+            return head.next;
+        }
+      
         while(p2.next!=null){
             p1=p1.next;
             p2=p2.next;
         }
-        p1.next=p1.next.next;
-        if(p1==head){
-            head.next=p1.next;
+        
+        if(p1==head){                 //if head is the (n+1)th node from the end
+            head.next=p1.next.next;
+            return head;
         }
-        return head;
+        else{
+          p1.next=p1.next.next;
+          return head;
+        }
     }
 }
+        
