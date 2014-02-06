@@ -1,0 +1,36 @@
+public class Solution {
+    public int counter = 0;
+    
+    public int totalNQueens(int n) {
+        int[] Q = new int[n];
+        for(int i = 0; i < n; i++) {
+            Q[i] = -1;
+        }
+        placeQueens(0, n, Q);
+        return counter;
+    }
+    
+    private void placeQueens(int r, int n, int[] Q) {
+        if (r == n) {
+            counter++;
+        }
+        else {
+            for(int i = 0; i < n; i++) {
+                Q[r] = i;
+                if(isValid(r, Q)) {
+                    placeQueens(r+1, n, Q);
+                }
+            }
+        }
+    }
+    
+    private boolean isValid(int r, int[] Q) {
+        for(int i = 0; i < r; i++) {
+            if (Q[i] == Q[r] || Math.abs(Q[i] - Q[r]) == r - i) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+}
